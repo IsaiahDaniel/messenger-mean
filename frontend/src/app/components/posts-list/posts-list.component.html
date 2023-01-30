@@ -1,0 +1,32 @@
+<div class="container" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+
+
+<div class="container" *ngIf="posts.length">
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+      *ngFor="let post of posts"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ post.title }}</mat-panel-title>
+        <!-- <mat-panel-description> Post Description </mat-panel-description> -->
+      </mat-expansion-panel-header>
+      <p>{{ post.content }}</p>
+      <div class="image-wrapper">
+        <img [src]="post.image" alt="">
+      </div>
+      <mat-action-row>
+        <button mat-button color="accent" (click)="deletePost(post?._id)">Delete</button>
+        <button mat-button color="primary" (click)="editPost(post?._id)">Edit</button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+  <mat-paginator [pageSize]="pageSize" [length]="totalPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangePage($event)"></mat-paginator>
+</div>
+
+<div class="container">
+  <p *ngIf="!posts.length" class="text-center">No Posts yet</p>
+</div>

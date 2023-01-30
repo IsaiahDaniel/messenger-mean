@@ -1,0 +1,18 @@
+mat-form-field {
+    width: 100%;
+}
+
+input {
+    background-color: transparent !important;
+}
+
+input[type='file']{
+    display: none;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+    margin-top: 10px;
+}
